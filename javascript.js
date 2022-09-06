@@ -1,40 +1,28 @@
 const add = (a,b) => +a + +b;
-
 const subtract = (a,b) => +a - +b;
-
 const multiply = (a,b) => +a * +b;
-
 const divide = (a,b) => +a / +b;
 
-const operate = function (operateObj) { 
-  let first = prompt("first number?");
-  let second = prompt("second number?");
-
-  return operateObj;
+const operate = function () { 
+  let operateObj = {};
+  operateObj.a = prompt("first number?");
+  operateObj.op = prompt("add? subtract? multiply? divide?");
+  //how can i link the prompt answer to the object key:value?
+  operateObj.b = prompt("second number?");
+  
+  if (operateObj.op === "add") {
+    return add(operateObj.a, operateObj.b);
+  } else if (operateObj.op === "subtract") {
+    return subtract(operateObj.a, operateObj.b);
+  } else if (operateObj.op === "multiply") {
+    return multiply(operateObj.a, operateObj.b);
+  } else if (operateObj.op === "divide") {
+    return divide(operateObj.a, operateObj.b);
+  }
 }
 
-let operateObj = {
-  // first: 
+console.log(operate());
 
-  // second:
-
-  add: function() {
-    add(`${this.first} + ${this.second}`);  // THIS refers to the object
-  },
-
-  subtract: function() {
-    subtract(`${this.first} - ${this.second}`);
-  },
-
-  multiply: function() {
-    multiply(`${this.first} * ${this.second}`);
-  },
-
-  divide: function() {
-    divide(`${this.first} / ${this.second}`);
-  },
-
-};
     
 
 
