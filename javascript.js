@@ -25,12 +25,9 @@ const operate = function () {
 const numbers = document.querySelectorAll(".number"); 
 numbers.forEach((number) => { 
   number.addEventListener ('click', () => { 
-    const display = document.getElementById('display');
-    const char = number.textContent;
-    display.replaceWith(char);
-    // display.textContent = number.id;
-
-    //currently trying to get the textContent of element ID "theone" to show in display
+    const display = document.getElementById('display'); // selects the display div
+    let char = number.textContent;  // char is the text content of the number that is clicked
+    display.append(char); // add the number to the display div
   });
 });
     

@@ -23,6 +23,9 @@ body {
 
 }
 
+#display {
+    text-align: center;
+}
 .display-row {
     width: 350px;
     height: 50px;
