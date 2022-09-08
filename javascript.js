@@ -21,8 +21,16 @@ const operate = function () {
   }
 }
 
-console.log(operate());
 
+const numbers = document.querySelectorAll(".number"); //selects all elements of class 'number'
+numbers.forEach((number) => { //for each of these elements the following applies
+  number.addEventListener ('click', () => { // add event listener for a click
+    const display = document.getElementById('display'); 
+    display.textContent = number.id;
+
+    //currently trying to get the textContent of element ID "theone" to show in display
+  });
+});
     
 
 
