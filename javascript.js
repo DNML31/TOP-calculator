@@ -21,17 +21,39 @@ const operate = function () {
   }
 }
 
+let display = document.getElementById('display');
+let numberA; //the first number needs to assigned to the 'a' in operator functions
+let numberB;
 
 const numbers = document.querySelectorAll(".number"); 
 numbers.forEach((number) => { 
   number.addEventListener ('click', () => { 
-    const display = document.getElementById('display'); // selects the display div
-    let char = number.textContent;  // char is the text content of the number that is clicked
-    display.append(char); // add the number to the display div
+
+    let char = number.textContent;  
+    display.append(char);
+
   });
 });
-    
 
+
+
+const operators = document.querySelectorAll(".buttonoperator");
+operators.forEach((operator) => {
+  operator.addEventListener ('click', () => {
+    let op = operator.textContent;
+      //link the 'operator' to the matching function const
+    if (op === "+") {
+      add();
+    } else if (op === "-") {
+      subtract();
+    } else if (op === "*") {
+      multiply();
+    } else if (op === "/") {
+      divide();
+    }
+
+  })
+})
 
 
 //Create a new function operate that takes an operator and 2 numbers and then 

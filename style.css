@@ -24,7 +24,7 @@ body {
 }
 
 #display {
-    text-align: center;
+    text-align: end;
 }
 .display-row {
     width: 350px;
@@ -62,7 +62,7 @@ button {
     background-color: rgb(255, 162, 0);
 }
 
-.button-operator {
+.buttonoperator {
     background-color: rgb(189, 189, 189); 
 }
 
