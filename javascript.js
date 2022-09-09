@@ -25,16 +25,48 @@ let display = document.getElementById('display');
 let numberA; //the first number needs to assigned to the 'a' in operator functions
 let numberB;
 
-const numbers = document.querySelectorAll(".number"); 
-numbers.forEach((number) => { 
-  number.addEventListener ('click', () => { 
+// const numbers = document.querySelectorAll(".number"); 
+// numbers.forEach((number) => { 
+//   number.addEventListener ('click', () => { 
 
-    let char = number.textContent;  
-    display.append(char);
+//     let char = number.textContent;  
+//     display.append(char);
 
+//   });
+// });
+
+//if numbers are clicked, keep reassigning value of numberA, until an operator is clicked,
+const buttons = document.querySelectorAll('button'); // selecting ALL buttons
+buttons.forEach((button) => {
+  button.addEventListener ('click', () => {
+    if (button.classList.contains('number')) {
+
+      let char = button.textContent;  
+
+      display.append(char);
+
+    } else if (button.classList.contains('buttonoperator') && display.hasChildNodes() === false) { 
+
+      return;
+
+    } else if (button.classList.contains('buttonoperator') && display.hasChildNodes() === true) {
+
+      let op = button.textContent;
+
+      let operation;
+
+      if (op === "+") {
+        let operation = add();
+      } else if (op === "-") {
+        let operation = subtract();
+      } else if (op === "*") {
+        let operation = multiply();
+      } else if (op=== "/") {
+        let operation = divide();
+      }
+    }
   });
-});
-
+})
 
 
 const operators = document.querySelectorAll(".buttonoperator");
