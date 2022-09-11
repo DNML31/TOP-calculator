@@ -25,16 +25,6 @@ let display = document.getElementById('display');
 let numberA; //the first number needs to assigned to the 'a' in operator functions
 let numberB;
 
-// const numbers = document.querySelectorAll(".number"); 
-// numbers.forEach((number) => { 
-//   number.addEventListener ('click', () => { 
-
-//     let char = number.textContent;  
-//     display.append(char);
-
-//   });
-// });
-
 //if numbers are clicked, keep reassigning value of numberA, until an operator is clicked,
 const buttons = document.querySelectorAll('button'); // selecting ALL buttons
 buttons.forEach((button) => {
@@ -42,17 +32,21 @@ buttons.forEach((button) => {
     if (button.classList.contains('number')) {
 
       let char = button.textContent;  
-
       display.append(char);
 
     } else if (button.classList.contains('buttonoperator') && display.hasChildNodes() === false) { 
 
       return;
 
+    } else if (display.hasChildNodes() && button.classList.contains('buttonclear')) {
+
+      while (display.hasChildNodes()) {
+        display.removeChild(display.firstChild);
+      }
+    
     } else if (button.classList.contains('buttonoperator') && display.hasChildNodes() === true) {
 
       let op = button.textContent;
-
       let operation;
 
       if (op === "+") {
@@ -69,23 +63,23 @@ buttons.forEach((button) => {
 })
 
 
-const operators = document.querySelectorAll(".buttonoperator");
-operators.forEach((operator) => {
-  operator.addEventListener ('click', () => {
-    let op = operator.textContent;
-      //link the 'operator' to the matching function const
-    if (op === "+") {
-      add();
-    } else if (op === "-") {
-      subtract();
-    } else if (op === "*") {
-      multiply();
-    } else if (op === "/") {
-      divide();
-    }
+// const operators = document.querySelectorAll(".buttonoperator");
+// operators.forEach((operator) => {
+//   operator.addEventListener ('click', () => {
+//     let op = operator.textContent;
+//       //link the 'operator' to the matching function const
+//     if (op === "+") {
+//       add();
+//     } else if (op === "-") {
+//       subtract();
+//     } else if (op === "*") {
+//       multiply();
+//     } else if (op === "/") {
+//       divide();
+//     }
 
-  })
-})
+//   })
+// })
 
 
 //Create a new function operate that takes an operator and 2 numbers and then 
