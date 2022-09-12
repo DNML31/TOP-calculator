@@ -30,7 +30,7 @@ const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
   button.addEventListener ('click', () => {
     if (button.classList.contains('number')) { 
-      let char = button.textContent;  
+      let char = button.textContent;
       display.append(char);
 
     } else if (button.classList.contains('buttonoperator') && display.hasChildNodes() === false) { 
@@ -43,45 +43,29 @@ buttons.forEach((button) => {
       while (displayOp.hasChildNodes()) {
         displayOp.removeChild(displayOp.firstChild);
       }
+    }
     
-    } else if (button.classList.contains('buttonoperator') && display.hasChildNodes() === true) {
-      let numberA = display;
-      // let op = button.textContent;
+    if (button.classList.contains('buttonoperator') && display.hasChildNodes() === true) {
+      let numberA = display.textContent;
+      let op = button.textContent;
       displayOp.append(op);
       //need to limit the number of operators at a time to 1
-      if (displayOp.length === 1) {
-        alert("hey");
+    } else if (button.classList.contains('buttonoperator') && displayOp.hasChildNodes() === true) {
+      while (displayOp.hasChildNodes()) {
+        displayOp.removeChild(displayOp.firstChild);
       }
+      displayOp.append(op);
+    }
 
-      switch (op = button.textContent) {
-        case "+":
-          displayOp.append(op);
-          add();
-          break; 
-        case "-":
-          displayOp.append(op);
-          subtract();
-          break;
-        case "*":
-          displayOp.append(op);
-          multiply();
-          break;
-        case "/":
-          displayOp.append(op);
-          divide();
-          break;
+    if (button.classList.contains('number') && displayOp.hasChildNodes() && display.hasChildNodes()) {
+      let numberB = display.textContent;
+    }
 
-      }
-
-      console.log(numberA);
       // let char = button.textContent;
       // display.append(char);
       // let numberB = display;
 
-    }
 
   });
 })
-
-//line 62 - 'numberA' is logged as individual number strings. 99 is "9" and "9"
 //only one operator should be selected at max
