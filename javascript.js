@@ -46,7 +46,8 @@ buttons.forEach((button) => {
     
     } else if (button.classList.contains('buttonoperator') && display.hasChildNodes() === true) {
 
-      let op = button.textContent;
+      let numberA = display;
+      let op = button.textContent; // determines which operator function to use
       let operation;
 
       if (op === "+") {
@@ -55,9 +56,16 @@ buttons.forEach((button) => {
         let operation = subtract();
       } else if (op === "*") {
         let operation = multiply();
-      } else if (op=== "/") {
+      } else if (op === "/") {
         let operation = divide();
       }
+
+      let char = button.textContent;
+      display = display.append(char);
+
+
+       return operation(numberA, numberB);
+
     }
   });
 })
