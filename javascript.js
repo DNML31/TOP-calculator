@@ -28,7 +28,7 @@ let numberA;
 let numberB;
 
 // const buttons = document.querySelectorAll('button'); 
-// buttons.forEach((button) => {
+// buttons.forEach((button) => { 
 //   button.addEventListener ('click', () => {
 //     if (button.classList.contains('number')) { 
 //       let numberA = button.textContent;
@@ -72,12 +72,22 @@ numbers.forEach((number) => {
   number.addEventListener ('click', () => {
     let numberA = number.textContent;
     displayA.append(numberA);
-  })
-
+  
   if (displayOp.hasChildNodes() && displayA.hasChildNodes()) {
-    let numberB = button.textContent;
-    displayB.append(numberB);
+    while (displayA.hasChildNodes()) {
+      displayA.removeChild(displayA.firstChild);
+    }
+
   }
+  
+  let numberB = number.textContent;
+  displayB.append(numberB);
+  //take values to assign to numberB
+  
+
+})
+  
+
 });
 
 const operators = document.querySelectorAll('.operator');
@@ -88,9 +98,9 @@ operators.forEach((operator) => {
       displayOp.append(op);
     }
     
-    while (displayA.hasChildNodes()) {
-      displayA.removeChild(displayA.firstChild);
-    }
+    // while (displayA.hasChildNodes()) {
+    //   displayA.removeChild(displayA.firstChild);
+    // }
   })
 });
 
@@ -100,8 +110,7 @@ clearButton.addEventListener('click', () => {
     displayA.removeChild(displayA.firstChild);
   }
 
-  while (displayOp.hasChildNoides() === true) {
+  while (displayOp.hasChildNodes() === true) {
     displayOp.removeChild(displayOp.firstChild);
   }
-
 });
