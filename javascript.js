@@ -78,11 +78,11 @@ numbers.forEach((number) => {
       displayA.removeChild(displayA.firstChild);
     }
 
+    let numberB = number.textContent;
+    displayB.append(numberB);
+    //only able to take one digit because of the if statement above
   }
-  
-  let numberB = number.textContent;
-  displayB.append(numberB);
-  //take values to assign to numberB
+
   
 
 })
