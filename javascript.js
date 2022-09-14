@@ -22,8 +22,8 @@ const divide = (a,b) => +a / +b;
 // }
 
 let displayOp = document.getElementById('operation');
-let displayA = document.getElementById('display');
-let displayB = document.getElementById('display');
+let display = document.getElementById('display');
+
 let numberA; 
 let numberB;
 
@@ -32,22 +32,22 @@ let numberB;
 //   button.addEventListener ('click', () => {
 //     if (button.classList.contains('number')) { 
 //       let numberA = button.textContent;
-//       displayA.append(numberA);
+//       display.append(numberA);
 
-//     } else if (button.classList.contains('buttonoperator') && displayA.hasChildNodes() === false) { 
+//     } else if (button.classList.contains('buttonoperator') && display.hasChildNodes() === false) { 
 //       return;
       
-//     } else if (button.classList.contains('buttonclear') && displayA.hasChildNodes() === true) {
-//       while (displayA.hasChildNodes()) {
-//         displayA.removeChild(displayA.firstChild);
+//     } else if (button.classList.contains('buttonclear') && display.hasChildNodes() === true) {
+//       while (display.hasChildNodes()) {
+//         display.removeChild(display.firstChild);
 //       }
 //       while (displayOp.hasChildNodes()) {
 //         displayOp.removeChild(displayOp.firstChild);
 //       }
 //     }
     
-//     if (button.classList.contains('buttonoperator') && displayA.hasChildNodes() === true) {
-//       let numberA = displayA.textContent;
+//     if (button.classList.contains('buttonoperator') && display.hasChildNodes() === true) {
+//       let numberA = display.textContent;
 //       let op = button.textContent;
 //       displayOp.append(op);
 //       //need to limit the number of operators at a time to 1
@@ -58,10 +58,10 @@ let numberB;
 //       displayOp.append(op);
 //     }
 
-//     if (button.classList.contains('number') && displayOp.hasChildNodes() && displayA.hasChildNodes()) {
-//       let numberB = displayB.textContent;
+//     if (button.classList.contains('number') && displayOp.hasChildNodes() && display.hasChildNodes()) {
+//       let numberB = display.textContent;
 //       // let char = button.textContent;
-//       displayB.append(numberB);
+//       display.append(numberB);
 //     }
 //   });
 // })
@@ -71,43 +71,49 @@ const numbers = document.querySelectorAll('.number');
 numbers.forEach((number) => {
   number.addEventListener ('click', () => {
     let numberA = number.textContent;
-    displayA.append(numberA);
+    display.append(numberA);
   
-  if (displayOp.hasChildNodes() && displayA.hasChildNodes()) {
-    while (displayA.hasChildNodes()) {
-      displayA.removeChild(displayA.firstChild);
+    if (displayOp.hasChildNodes() && display.hasChildNodes()) {
+      while (display.hasChildNodes()) {
+        display.removeChild(display.firstChild);
+      }
+      let numberB = number.textContent;
+      display.append(numberB);
+
+      //only able to take one digit
     }
-
-    let numberB = number.textContent;
-    displayB.append(numberB);
-    //only able to take one digit because of the if statement above
-  }
-
-  
-
-})
-  
-
+    
+  })
 });
 
 const operators = document.querySelectorAll('.operator');
 operators.forEach((operator) => {
   operator.addEventListener ('click', () => {
-    if (displayA.hasChildNodes() === true) {
-      let op = operator.textContent;
+    let op = operator.textContent;
+    if (display.hasChildNodes() === true) {
       displayOp.append(op);
     }
-    
-    // while (displayA.hasChildNodes()) {
-    //   displayA.removeChild(displayA.firstChild);
+
+    // if (op !== "=") {
+    //   const numbers = document.querySelectorAll('.number');
+    //   numbers.forEach((number) => {
+    //     number.addEventListener ('click', () => {
+    //       let numberB = number.textContent; 
+    //       display.append(numberB);
+    //     })
+    //   });  
+    // }
+  
+    // while (display.hasChildNodes()) {
+    //   display.removeChild(display.firstChild);
     // }
   })
 });
 
 const clearButton = document.querySelector('.buttonclear');
 clearButton.addEventListener('click', () => {
-  while (displayA.hasChildNodes() === true) {
-    displayA.removeChild(displayA.firstChild);
+  while (display.hasChildNodes() === true) {
+    display.removeChild(display.firstChild);
   }
 
   while (displayOp.hasChildNodes() === true) {
