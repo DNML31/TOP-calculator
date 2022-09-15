@@ -77,8 +77,18 @@ numbers.forEach((number) => {
       while (display.hasChildNodes()) {
         display.removeChild(display.firstChild);
       }
-      let numberB = number.textContent;
+      
+      let numberB = [];
+      toString(numberB.push(number.textContent));
+      const finalB = numberB.reduce(
+        (previousValue, currentValue) => previousValue.concat(currentValue), ""
+      );
+      console.log(finalB); 
+
+      //function that takes all elements of array, numberB, and concatenates them
+
       display.append(numberB);
+      display.value = numberB;
 
       //only able to take one digit
     }
@@ -92,16 +102,11 @@ operators.forEach((operator) => {
     let op = operator.textContent;
     if (display.hasChildNodes() === true) {
       displayOp.append(op);
+      return;
     }
 
-    // if (op !== "=") {
-    //   const numbers = document.querySelectorAll('.number');
-    //   numbers.forEach((number) => {
-    //     number.addEventListener ('click', () => {
-    //       let numberB = number.textContent; 
-    //       display.append(numberB);
-    //     })
-    //   });  
+    // if ((op === "+") && numberA === number && numberB === number) {
+    //   return add(numberA, numberB);
     // }
   
     // while (display.hasChildNodes()) {
