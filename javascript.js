@@ -21,23 +21,24 @@ const divide = (a,b) => +a / +b;
 //   }
 // }
 
-let displayOp = document.getElementById('operation');
-let display = document.getElementById('display');
-
-let numberA; 
+const displayOp = document.getElementById('operation');
+const display = document.getElementById('display');
+let value;
+let numberA;
 let numberB;
 
 // const buttons = document.querySelectorAll('button'); 
 // buttons.forEach((button) => { 
 //   button.addEventListener ('click', () => {
+
 //     if (button.classList.contains('number')) { 
 //       let numberA = button.textContent;
 //       display.append(numberA);
 
-//     } else if (button.classList.contains('buttonoperator') && display.hasChildNodes() === false) { 
+//     } else if (button.classList.contains('operator') && display.hasChildNodes()) { 
 //       return;
       
-//     } else if (button.classList.contains('buttonclear') && display.hasChildNodes() === true) {
+//     } else if (button.classList.contains('buttonclear') && display.hasChildNodes()) {
 //       while (display.hasChildNodes()) {
 //         display.removeChild(display.firstChild);
 //       }
@@ -46,12 +47,12 @@ let numberB;
 //       }
 //     }
     
-//     if (button.classList.contains('buttonoperator') && display.hasChildNodes() === true) {
+//     if (button.classList.contains('operator') && display.hasChildNodes()) {
 //       let numberA = display.textContent;
 //       let op = button.textContent;
 //       displayOp.append(op);
 //       //need to limit the number of operators at a time to 1
-//     } else if (button.classList.contains('buttonoperator') && displayOp.hasChildNodes() === true) {
+//     } else if (button.classList.contains('operator') && displayOp.hasChildNodes()) {
 //       while (displayOp.hasChildNodes()) {
 //         displayOp.removeChild(displayOp.firstChild);
 //       }
@@ -60,68 +61,75 @@ let numberB;
 
 //     if (button.classList.contains('number') && displayOp.hasChildNodes() && display.hasChildNodes()) {
 //       let numberB = display.textContent;
-//       // let char = button.textContent;
 //       display.append(numberB);
 //     }
 //   });
 // })
-//try manipulating event listeners (adding, taking off, assigning new event listeners)
+
 
 const numbers = document.querySelectorAll('.number');
 numbers.forEach((number) => {
   number.addEventListener ('click', () => {
-    let numberA = number.textContent;
-    display.append(numberA);
-  
-    if (displayOp.hasChildNodes() && display.hasChildNodes()) {
-      while (display.hasChildNodes()) {
-        display.removeChild(display.firstChild);
-      }
-      
-      let numberB = [];
-      toString(numberB.push(number.textContent));
-      const finalB = numberB.reduce(
-        (previousValue, currentValue) => previousValue.concat(currentValue), ""
-      );
-      console.log(finalB); 
+    let numDiv = document.createElement('div');
+    numDiv = number.textContent;
+    display.append(numDiv);
 
-      //function that takes all elements of array, numberB, and concatenates them
+    let numberA = numDiv;
+    console.log(numberA);
 
-      display.append(numberB);
-      display.value = numberB;
+    if (displayOp.hasChildNodes()) {
+      display.removeChild(numDiv);
+      let numDiv = document.createElement('div');
+      numDiv = number.textContent;
+      display.append(numDiv);
 
-      //only able to take one digit
+      let numberB = numDiv;
+      console.log(numberB);
+
+    } else if (display.hasChildNodes() && displayOp.hasChildNodes()) {
+      let numDiv = document.createElement('div');
+      value = number.textContent;
+      display.append(value);
     }
-    
   })
+
+
 });
+//add numbers to a value when clicked
+//if an operator button has been clicked, add them to another value
+
 
 const operators = document.querySelectorAll('.operator');
 operators.forEach((operator) => {
   operator.addEventListener ('click', () => {
-    let op = operator.textContent;
-    if (display.hasChildNodes() === true) {
-      displayOp.append(op);
-      return;
-    }
-
-    // if ((op === "+") && numberA === number && numberB === number) {
-    //   return add(numberA, numberB);
-    // }
-  
-    // while (display.hasChildNodes()) {
-    //   display.removeChild(display.firstChild);
-    // }
+    let O = document.createElement('div');
+    O = operator.textContent;
+    displayOp.append(O);
   })
-});
-
-const clearButton = document.querySelector('.buttonclear');
-clearButton.addEventListener('click', () => {
-  while (display.hasChildNodes() === true) {
-    display.removeChild(display.firstChild);
+  if (display.hasChildNodes()) {
+    value = numberA;
   }
+})
 
-  while (displayOp.hasChildNodes() === true) {
-    displayOp.removeChild(displayOp.firstChild);
-  }
-});
+if (displayOp.hasChildNodes()) {
+  operator.removeEventListener('click', () => {
+    let O = document.createElement('div');
+    O = operator.textContent;
+    displayOp.append(O);
+  })
+}
+
+const solution = document.getElementById('equals');
+//run the function of the operator that was chosen with the two values
+
+
+// const clearButton = document.getElementById('clear');
+// clearButton.addEventListener('click', () => {
+//   while (display.hasChildNodes()) {
+//     display.removeChild(display.firstChild);
+//   }
+
+//   while (displayOp.hasChildNodes()) {
+//     displayOp.removeChild(displayOp.firstChild);
+//   }
+// });
