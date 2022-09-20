@@ -23,59 +23,53 @@ const divide = (a,b) => +a / +b;
         
 const displayOp = document.getElementById('operation');
 const displayPre = document.getElementById('display-previous');
-const displayCurr = document.getElementById('display-current');
-let numDiv = document.createElement('div');
-let value;
-let numberA;
-let numberB;
-
+const displayCur = document.getElementById('display-current');
 
 const numbers = document.querySelectorAll('.number');
-numbers.forEach((number) => {
-          
-  number.addEventListener('click', () => {
-    const numbers = document.querySelectorAll('.number');
-      
-    numbers.forEach((number) => {
-      number.addEventListener('click', () => {
-        numDiv = number.textContent;
-        displayPre.append(numDiv);
-        numberB = numDiv;
-        console.log(numberA);
-      })
-    })
-  })
-});
-
-
 const operators = document.querySelectorAll('.operator');
-operators.forEach((operator) => {
-  operator.addEventListener('click', opBtn(operator));
+const clear = document.getElementById('clear');
+const decimal = document.getElementById('decimal');
+const equals = document.getElementById('equals');
+
+let numberA = '';
+let numberB = '';
+
+
+numbers.forEach((number) => {
+  number.addEventListener('click', (e) => {
+    sendNum(e.target.textContent);
+  });
 });
 
-function opBtn(x) {
-  let opDiv = document.createElement('div');
-  opDiv = x.textContent;
-  displayOp.append(opDiv);
+function sendNum(x) {
+  displayCur.append(x);
 }
 
+operators.forEach((operator) => {
+  operator.addEventListener('click', (e) => {
+    sendOp(e.target.textContent);
+  });
 
-const clearButton = document.getElementById('clear');
-clearButton.addEventListener('click', () => {
+});
+
+function sendOp(x) {
+  if(x.length = 1) {
+    displayOp.append(x);
+  }
+}
+
+clear.addEventListener('click', () => {
   while (displayOp.hasChildNodes()) {
     displayOp.removeChild(displayOp.firstChild);
   }
   while (displayPre.hasChildNodes()) {
     displayPre.removeChild(displayPre.firstChild);
   }
-  while (displayCurr.hasChildNodes()) {
-    displayCurr.removeChild(displayPre.firstChild);
+  while (displayCur.hasChildNodes()) {
+    displayCur.removeChild(displayCur.firstChild);
   }
-  
-  numDiv = undefined;
-  numberA = undefined;
-  numberB = undefined;
 });
 
+equals.addEventListener('click', (e) => {
 
-const solution = document.getElementById('equals');
+})

@@ -32,14 +32,6 @@ body {
     height: 70px;
 }
 
-.row {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: center;
-    flex-shrink: 0;
-}
-
 #operation {
     font-size: 1rem;
     align-self: flex-start;
@@ -51,20 +43,30 @@ body {
     align-self: flex-end;
 }
 
+#clear {
+    align-self: flex-end;
+}
+
 #display-current {
     width: 210px;
     height: 52px;
     display: flex;
     flex-shrink: 0;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
+    font-size: 1rem;
+    padding: 2px;
     border: 7px solid rgb(255, 123, 0);
     border-radius: 1rem;    
     background-color: rgb(234, 234, 234);
 }
 
-#clear {
-    align-self: flex-end;
+.row {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
 }
 
 button {
@@ -84,3 +86,4 @@ button {
 .operator {
     background-color: rgb(189, 189, 189); 
 }
+
