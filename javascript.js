@@ -1,7 +1,7 @@
-const add = (a,b) => +a + +b;
-const subtract = (a,b) => +a - +b;
-const multiply = (a,b) => +a * +b;
-const divide = (a,b) => +a / +b;
+const add = (numberA, numberB) => +numberA + +numberB;
+const subtract = (numberA, numberB) => +numberA - +numberB;
+const multiply = (numberA, numberB) => +numberA * +numberB;
+const divide = (numberA, numberB) => +numberA / +numberB;
 
 // const operate = function () { 
 //   let operateObj = {};
@@ -31,8 +31,11 @@ const clear = document.getElementById('clear');
 const decimal = document.getElementById('decimal');
 const equals = document.getElementById('equals');
 
+let solution = document.createElement('div');
+
 let numberA = '';
 let numberB = '';
+let operator = '';
 
 
 numbers.forEach((number) => {
@@ -49,13 +52,20 @@ operators.forEach((operator) => {
   operator.addEventListener('click', (e) => {
     sendOp(e.target.textContent);
   });
-
 });
 
 function sendOp(x) {
-  if(x.length = 1) {
-    displayOp.append(x);
-  }
+
+  displayOp.append(x);
+  let operator = x;
+
+  let num = document.createElement('div');
+  num = displayCur.textContent;
+  displayPre.append(num);
+  let numberA = num;
+
+  displayCur.textContent = '';
+
 }
 
 clear.addEventListener('click', () => {
@@ -68,8 +78,40 @@ clear.addEventListener('click', () => {
   while (displayCur.hasChildNodes()) {
     displayCur.removeChild(displayCur.firstChild);
   }
+
+  let numberA = '';
+  let numberB = '';
+  let operator = '';
+
 });
 
 equals.addEventListener('click', (e) => {
 
+  let num = document.createElement('div');
+  num = displayCur.textContent;
+  let numberB = Number(num);
+  
+  let operator = displayOp.textContent;
+  let numberA = Number(displayPre.textContent);
+  
+  displayOp.textContent = '';
+  displayCur.textContent = '';
+  
+  if (operator === '+') {
+    let solution = numberA + numberB;
+    displayPre.textContent = '';
+    displayPre.append(solution);
+  } else if (operator === '-') {
+    let solution = numberA - numberB;
+    displayPre.textContent = '';
+    displayPre.append(solution);
+  } else if (operator === '*') {
+    let solution = numberA * numberB;
+    displayPre.textContent = '';
+    displayPre.append(solution);
+  } else if (operator === '/') {
+    let solution = numberA / numberB;
+    displayPre.textContent = '';
+    displayPre.append(solution);
+  }
 })
