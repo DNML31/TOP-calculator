@@ -48,16 +48,8 @@ body {
 
 #display-previous {
     font-size: 1rem;
-    align-self: flex-endt;
+    align-self: flex-end;
 }
-
-
-.display {
-    border: 7px solid rgb(255, 123, 0);
-    border-radius: 1rem;
-    background-color: rgb(234, 234, 234);
-}
-
 
 #display-current {
     width: 210px;
@@ -71,11 +63,9 @@ body {
     background-color: rgb(234, 234, 234);
 }
 
-
-#display {
+#clear {
     align-self: flex-end;
 }
-
 
 button {
     height: 70px;
@@ -93,8 +83,4 @@ button {
 
 .operator {
     background-color: rgb(189, 189, 189); 
-}
-
-#clear {
-    align-self: flex-end;
 }
