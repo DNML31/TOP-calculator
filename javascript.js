@@ -20,9 +20,10 @@ const divide = (a,b) => +a / +b;
 //     return divide(operateObj.a, operateObj.b);
 //   }
 // }
-
+        
 const displayOp = document.getElementById('operation');
-const display = document.getElementById('display');
+const displayPre = document.getElementById('display-previous');
+const displayCurr = document.getElementById('display-current');
 let numDiv = document.createElement('div');
 let value;
 let numberA;
@@ -31,30 +32,18 @@ let numberB;
 
 const numbers = document.querySelectorAll('.number');
 numbers.forEach((number) => {
-
+          
   number.addEventListener('click', () => {
-
-    if (display.hasChildNodes() && displayOp.hasChildNodes()) {
-      while (display.hasChildNodes()) {
-        display.removeChild(display.firstChild);
-      };
-    
-      const numbers = document.querySelectorAll('.number');
-
-      numbers.forEach((number) => {
-        number.addEventListener('click', () => {
-          numDiv = number.textContent;
-          display.append(numDiv);
-          numberB = numDiv;
-          console.log(numberB);
-        })
+    const numbers = document.querySelectorAll('.number');
+      
+    numbers.forEach((number) => {
+      number.addEventListener('click', () => {
+        numDiv = number.textContent;
+        displayPre.append(numDiv);
+        numberB = numDiv;
+        console.log(numberA);
       })
-    }
-    numDiv = number.textContent;
-    display.append(numDiv);
-    numberA = numDiv;
-    console.log(numberA);
-
+    })
   })
 });
 
@@ -64,14 +53,11 @@ operators.forEach((operator) => {
   operator.addEventListener('click', opBtn(operator));
 });
 
-
 function opBtn(x) {
   let opDiv = document.createElement('div');
   opDiv = x.textContent;
   displayOp.append(opDiv);
 }
-//all operators just show up on display without click
-
 
 
 const clearButton = document.getElementById('clear');
@@ -79,8 +65,11 @@ clearButton.addEventListener('click', () => {
   while (displayOp.hasChildNodes()) {
     displayOp.removeChild(displayOp.firstChild);
   }
-  while (display.hasChildNodes()) {
-    display.removeChild(display.firstChild);
+  while (displayPre.hasChildNodes()) {
+    displayPre.removeChild(displayPre.firstChild);
+  }
+  while (displayCurr.hasChildNodes()) {
+    displayCurr.removeChild(displayPre.firstChild);
   }
   
   numDiv = undefined;

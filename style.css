@@ -5,6 +5,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    width: 100vw;
 }
 
 .calc-body {
@@ -12,52 +14,72 @@ body {
     flex-flow: column nowrap;
     justify-content: space-evenly;
     align-items: space-evenly;
-    margin-top: 40px;
-    gap: 4px 4px; /* row-gap column-gap */
-    padding-bottom: 20px;
+    width: 315px;
+    gap: 4px 4px;
+    padding: 10px;
     border-radius: 1rem;
     border: 5px solid grey;
     background-color: rgb(218, 218, 218);
-    width: 500px;
-    height: 700px;
-
 }
 
-
-.display-row {
-    width: 350px;
-    height: 50px;
+.top-row {
     display: flex;
-    flex-shrink: 0;
+    flex-direction: row nowrap;
     justify-content: space-between;
-    align-items: center;
-    margin: 2rem;
-    padding: 10px 20px;
-    border: 10px solid rgb(255, 123, 0);
+    border: 7px solid rgb(255, 123, 0);
     border-radius: 1rem;
     background-color: rgb(234, 234, 234);
-}
-
-#operation {
-    font-size: 1rem;
-    align-self: flex-start;
-}
-
-#display {
-    align-self: flex-end;
+    height: 70px;
 }
 
 .row {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px 10px;
-    width: auto;
-    height: 140px;
+    flex-shrink: 0;
 }
 
+#operation {
+    font-size: 1rem;
+    align-self: flex-start;
+    padding: 4px;
+}
+
+#display-previous {
+    font-size: 1rem;
+    align-self: flex-endt;
+}
+
+
+.display {
+    border: 7px solid rgb(255, 123, 0);
+    border-radius: 1rem;
+    background-color: rgb(234, 234, 234);
+}
+
+
+#display-current {
+    width: 210px;
+    height: 52px;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-between;
+    align-items: center;
+    border: 7px solid rgb(255, 123, 0);
+    border-radius: 1rem;    
+    background-color: rgb(234, 234, 234);
+}
+
+
+#display {
+    align-self: flex-end;
+}
+
+
 button {
+    height: 70px;
+    width: 70px;
     font-size: 25px;
     padding: 35px;
     border: 3px solid black;
@@ -73,3 +95,6 @@ button {
     background-color: rgb(189, 189, 189); 
 }
 
+#clear {
+    align-self: flex-end;
+}
