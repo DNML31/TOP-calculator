@@ -3,24 +3,6 @@ const subtract = (numberA, numberB) => +numberA - +numberB;
 const multiply = (numberA, numberB) => +numberA * +numberB;
 const divide = (numberA, numberB) => +numberA / +numberB;
 
-// const operate = function () { 
-//   let operateObj = {};
-//   operateObj.a = prompt("first number?");
-//   operateObj.op = prompt("add? subtract? multiply? divide?");
-//   //how can i link the prompt answer to the object key:value?
-//   operateObj.b = prompt("second number?");
-  
-//   if (operateObj.op === "add") {
-//     return add(operateObj.a, operateObj.b);
-//   } else if (operateObj.op === "subtract") {
-//     return subtract(operateObj.a, operateObj.b);
-//   } else if (operateObj.op === "multiply") {
-//     return multiply(operateObj.a, operateObj.b);
-//   } else if (operateObj.op === "divide") {
-//     return divide(operateObj.a, operateObj.b);
-//   }
-// }
-        
 const displayOp = document.getElementById('operation');
 const displayPre = document.getElementById('display-previous');
 const displayCur = document.getElementById('display-current');
@@ -53,19 +35,23 @@ operators.forEach((operator) => {
     sendOp(e.target.textContent);
   });
 });
+//operator button still needs to be limited to one at a time
 
 function sendOp(x) {
 
-  displayOp.append(x);
-  let operator = x;
+  if(!displayOp.hasChildNodes()) {
+    displayOp.append(x);
+    let operator = x;
 
-  let num = document.createElement('div');
-  num = displayCur.textContent;
-  displayPre.append(num);
-  let numberA = num;
+    let num = document.createElement('div');
+    num = displayCur.textContent;
+    displayPre.append(num);
+    let numberA = num;
 
-  displayCur.textContent = '';
-
+    displayCur.textContent = '';
+  } else {
+    displayOp.textContent = x;
+  }
 }
 
 clear.addEventListener('click', () => {
@@ -114,4 +100,8 @@ equals.addEventListener('click', (e) => {
     displayPre.textContent = '';
     displayPre.append(solution);
   }
+})
+
+decimal.addEventListener('click', () => {
+  //need to be able to use decimal button
 })
