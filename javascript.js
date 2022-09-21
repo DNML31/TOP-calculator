@@ -1,11 +1,7 @@
-const add = (numberA, numberB) => +numberA + +numberB;
-const subtract = (numberA, numberB) => +numberA - +numberB;
-const multiply = (numberA, numberB) => +numberA * +numberB;
-const divide = (numberA, numberB) => +numberA / +numberB;
-
 const displayOp = document.getElementById('operation');
 const displayPre = document.getElementById('display-previous');
 const displayCur = document.getElementById('display-current');
+const displayTopLeft = document.getElementById('top-left');
 
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
@@ -27,15 +23,17 @@ numbers.forEach((number) => {
 });
 
 function sendNum(x) {
-  displayCur.append(x);
-}
+  if(!displayTopLeft.hasChildNodes()) {
+    displayCur.append(x);
+  }
+  
+};
 
 operators.forEach((operator) => {
   operator.addEventListener('click', (e) => {
     sendOp(e.target.textContent);
   });
 });
-//operator button still needs to be limited to one at a time
 
 function sendOp(x) {
 
@@ -50,9 +48,9 @@ function sendOp(x) {
 
     displayCur.textContent = '';
   } else {
-    displayOp.textContent = x;
+    displayTopLeft.textContent = x;
   }
-}
+};
 
 clear.addEventListener('click', () => {
   while (displayOp.hasChildNodes()) {
@@ -63,6 +61,9 @@ clear.addEventListener('click', () => {
   }
   while (displayCur.hasChildNodes()) {
     displayCur.removeChild(displayCur.firstChild);
+  }
+  while (displayTopLeft.hasChildNodes()) {
+    displayTopLeft.removeChild(displayTopLeft.firstChild);
   }
 
   let numberA = '';
@@ -99,9 +100,18 @@ equals.addEventListener('click', (e) => {
     let solution = numberA / numberB;
     displayPre.textContent = '';
     displayPre.append(solution);
+  } else if (operator === '/' && numberB === 0) {
+    displayPre.textContent = 'nope';
+    displayCur.textContent = 'nope';
   }
-})
+});
 
-decimal.addEventListener('click', () => {
-  //need to be able to use decimal button
-})
+decimal.addEventListener('click', (e) => {
+  displayCur.append(e.target.textContent);
+});
+
+
+
+//how to limit only one decimal?
+//displayPre keeps showing "Infinity" and not the messages when dividing by 0
+//need to be able to do maths like 3 + 4 - 5 / 1 etc.
