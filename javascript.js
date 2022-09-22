@@ -1,7 +1,7 @@
 const displayOp = document.getElementById('operation');
 const displayPre = document.getElementById('display-previous');
 const displayCur = document.getElementById('display-current');
-const displayTopLeft = document.getElementById('top-left');
+const displayTopLeft = document.getElementById('op-plus');
 
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
@@ -25,8 +25,14 @@ numbers.forEach((number) => {
 function sendNum(x) {
   if(!displayTopLeft.hasChildNodes()) {
     displayCur.append(x);
-  }
+  } else if (displayPre.hasChildNodes() && displayCur.hasChildNodes() && 
+  displayTopLeft.hasChildNodes()) {
   
+    let expression = displayTopLeft.textContent;
+    displayTopLeft.textContent = '';
+    expression = expression + " " + x;
+    displayTopLeft.append(expression);
+  }
 };
 
 operators.forEach((operator) => {
@@ -47,12 +53,24 @@ function sendOp(x) {
     let numberA = num;
 
     displayCur.textContent = '';
+  } else if (displayPre.hasChildNodes() && displayCur.hasChildNodes()
+    && displayOp.hasChildNodes()) {
+
+    displayTopLeft.textContent = '';
+    displayTopLeft.textContent = 
+    displayPre.textContent + " " + displayOp.textContent + " " + 
+      displayCur.textContent + " " + x;
+    displayOp.textContent = '';
   } else {
     displayTopLeft.textContent = x;
   }
 };
 
 clear.addEventListener('click', () => {
+  let numberA = '';
+  let numberB = '';
+  let operator = '';
+
   while (displayOp.hasChildNodes()) {
     displayOp.removeChild(displayOp.firstChild);
   }
@@ -65,11 +83,6 @@ clear.addEventListener('click', () => {
   while (displayTopLeft.hasChildNodes()) {
     displayTopLeft.removeChild(displayTopLeft.firstChild);
   }
-
-  let numberA = '';
-  let numberB = '';
-  let operator = '';
-
 });
 
 equals.addEventListener('click', (e) => {
