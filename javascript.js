@@ -23,14 +23,16 @@ numbers.forEach((number) => {
 });
 
 function sendNum(x) {
+
   if(!displayTopLeft.hasChildNodes()) {
+
     displayCur.append(x);
+
   } else if (displayPre.hasChildNodes() && displayCur.hasChildNodes() && 
   displayTopLeft.hasChildNodes()) {
   
-    let expression = displayTopLeft.textContent;
+    let expression = displayTopLeft.textContent + " " + x;
     displayTopLeft.textContent = '';
-    expression = expression + " " + x;
     displayTopLeft.append(expression);
   }
 };
@@ -43,7 +45,8 @@ operators.forEach((operator) => {
 
 function sendOp(x) {
 
-  if(!displayOp.hasChildNodes()) {
+  if (!displayOp.hasChildNodes()) {
+
     displayOp.append(x);
     let operator = x;
 
@@ -55,6 +58,7 @@ function sendOp(x) {
     displayCur.textContent = '';
 
   } else if (!displayOp.hasChildNodes() && displayPre.hasChildNodes()) {
+
     let expression = displayCur.textContent + " " + x;
     displayCur.textContent = '';
     displayCur.append(expression);
@@ -70,9 +74,11 @@ function sendOp(x) {
     displayCur.textContent = '';
 
   } else if (displayPre.hasChildNodes()) {
+
     let expression = displayPre.textContent + " " + x;
     displayPre.textContent = '';
     displayPre.append(expression);
+
   } else {
 
     displayTopLeft.textContent = x;
@@ -80,6 +86,7 @@ function sendOp(x) {
 };
 
 clear.addEventListener('click', () => {
+
   let numberA = '';
   let numberB = '';
   let operator = '';
