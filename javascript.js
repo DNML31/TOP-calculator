@@ -53,17 +53,30 @@ function sendOp(x) {
     let numberA = num;
 
     displayCur.textContent = '';
+
+  } else if (!displayOp.hasChildNodes() && displayPre.hasChildNodes()) {
+    let expression = displayCur.textContent + " " + x;
+    displayCur.textContent = '';
+    displayCur.append(expression);
+
   } else if (displayPre.hasChildNodes() && displayCur.hasChildNodes()
     && displayOp.hasChildNodes()) {
 
     displayTopLeft.textContent = '';
-    displayTopLeft.textContent = 
-    displayPre.textContent + " " + displayOp.textContent + " " + 
-      displayCur.textContent + " " + x;
+    displayPre.textContent = 
+      displayPre.textContent + " " + displayOp.textContent + " " 
+      + displayCur.textContent + " " + x + " ";
     displayOp.textContent = '';
+    displayCur.textContent = '';
+
+  } else if (displayPre.hasChildNodes()) {
+    let expression = displayPre.textContent + " " + x;
+    displayPre.textContent = '';
+    displayPre.append(expression);
   } else {
+
     displayTopLeft.textContent = x;
-  }
+  } 
 };
 
 clear.addEventListener('click', () => {
@@ -114,10 +127,20 @@ equals.addEventListener('click', (e) => {
     displayPre.textContent = '';
     displayPre.append(solution);
   } else if (operator === '/' && numberB === 0) {
-    displayPre.textContent = 'nope';
-    displayCur.textContent = 'nope';
-  }
+    byZero();
+  } 
+  //need to be able to compute with multiple operators
+  //error message when dividing by zero
 });
+
+//function doesn't trigger when dividing by zero
+function byZero () {
+  displayOp.textContent = '';
+  displayPre.textContent = '';
+  displayCur.textContent = '';
+  displayTopLeft.textContent = '';
+  alert('hey');
+}
 
 decimal.addEventListener('click', (e) => {
   displayCur.append(e.target.textContent);
