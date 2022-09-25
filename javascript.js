@@ -15,7 +15,6 @@ let numberA = '';
 let numberB = '';
 let operator = '';
 
-
 numbers.forEach((number) => {
   number.addEventListener('click', (e) => {
     sendNum(e.target.textContent);
@@ -66,12 +65,41 @@ function sendOp(x) {
   } else if (displayPre.hasChildNodes() && displayCur.hasChildNodes()
     && displayOp.hasChildNodes()) {
 
-    displayTopLeft.textContent = '';
-    displayPre.textContent = 
-      displayPre.textContent + " " + displayOp.textContent + " " 
-      + displayCur.textContent + " " + x + " ";
-    displayOp.textContent = '';
+    // displayTopLeft.textContent = '';
+    // displayPre.textContent = 
+    //   displayPre.textContent + " " + displayOp.textContent + " " 
+    //   + displayCur.textContent + " " + x + " ";
+    // displayOp.textContent = '';
+    // displayCur.textContent = '';
+    let num = document.createElement('div');
+    num = displayCur.textContent;
+    let numberB = Number(num);
+    
+    let operator = displayOp.textContent;
+    let numberA = Number(displayPre.textContent);
+    
+    displayOp.textContent = x;
     displayCur.textContent = '';
+  
+    if (operator === '+') {
+      let solution = numberA + numberB;
+      displayPre.textContent = '';
+      displayPre.append(solution);
+    } else if (operator === '-') {
+      let solution = numberA - numberB;
+      displayPre.textContent = '';
+      displayPre.append(solution);
+    } else if (operator === '*') {
+      let solution = numberA * numberB;
+      displayPre.textContent = '';
+      displayPre.append(solution);
+    } else if (operator === '/') {
+      let solution = numberA / numberB;
+      displayPre.textContent = '';
+      displayPre.append(solution);
+    } else if (operator === '/' && numberB === 0) {
+      byZero();
+    } 
 
   } else if (displayPre.hasChildNodes()) {
 
@@ -79,11 +107,12 @@ function sendOp(x) {
     displayPre.textContent = '';
     displayPre.append(expression);
 
-  } else {
+  } else { 
 
     displayTopLeft.textContent = x;
   } 
 };
+
 
 clear.addEventListener('click', () => {
 
@@ -116,7 +145,7 @@ equals.addEventListener('click', (e) => {
   
   displayOp.textContent = '';
   displayCur.textContent = '';
-  
+
   if (operator === '+') {
     let solution = numberA + numberB;
     displayPre.textContent = '';
@@ -136,8 +165,7 @@ equals.addEventListener('click', (e) => {
   } else if (operator === '/' && numberB === 0) {
     byZero();
   } 
-  //need to be able to compute with multiple operators
-  //error message when dividing by zero
+
 });
 
 //function doesn't trigger when dividing by zero
