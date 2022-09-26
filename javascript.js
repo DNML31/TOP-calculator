@@ -15,6 +15,18 @@ let numberA = '';
 let numberB = '';
 let operator = '';
 
+function byZero() {
+  displayOp.textContent = '';
+  displayPre.textContent = '';
+  displayCur.textContent = '';
+  displayTopLeft.textContent = '';
+  let solution = 'nope';
+  displayPre.textContent = '';
+  displayPre.append(solution);
+  displayCur.append(solution);
+  displayOp.append(solution);
+}
+
 numbers.forEach((number) => {
   number.addEventListener('click', (e) => {
     sendNum(e.target.textContent);
@@ -65,12 +77,6 @@ function sendOp(x) {
   } else if (displayPre.hasChildNodes() && displayCur.hasChildNodes()
     && displayOp.hasChildNodes()) {
 
-    // displayTopLeft.textContent = '';
-    // displayPre.textContent = 
-    //   displayPre.textContent + " " + displayOp.textContent + " " 
-    //   + displayCur.textContent + " " + x + " ";
-    // displayOp.textContent = '';
-    // displayCur.textContent = '';
     let num = document.createElement('div');
     num = displayCur.textContent;
     let numberB = Number(num);
@@ -112,7 +118,6 @@ function sendOp(x) {
     displayTopLeft.textContent = x;
   } 
 };
-
 
 clear.addEventListener('click', () => {
 
@@ -159,30 +164,16 @@ equals.addEventListener('click', (e) => {
     displayPre.textContent = '';
     displayPre.append(solution);
   } else if (operator === '/') {
-    let solution = numberA / numberB;
-    displayPre.textContent = '';
-    displayPre.append(solution);
-  } else if (operator === '/' && numberB === 0) {
-    byZero();
-  } 
-
+    if (numberB === 0) {
+      byZero();
+    } else {
+      let solution = numberA / numberB;
+      displayPre.textContent = '';
+      displayPre.append(solution);
+    }
+  }
 });
-
-//function doesn't trigger when dividing by zero
-function byZero () {
-  displayOp.textContent = '';
-  displayPre.textContent = '';
-  displayCur.textContent = '';
-  displayTopLeft.textContent = '';
-  alert('hey');
-}
 
 decimal.addEventListener('click', (e) => {
   displayCur.append(e.target.textContent);
 });
-
-
-
-//how to limit only one decimal?
-//displayPre keeps showing "Infinity" and not the messages when dividing by 0
-//need to be able to do maths like 3 + 4 - 5 / 1 etc.
