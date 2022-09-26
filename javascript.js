@@ -1,7 +1,6 @@
 const displayOp = document.getElementById('operation');
 const displayPre = document.getElementById('display-previous');
 const displayCur = document.getElementById('display-current');
-const displayTopLeft = document.getElementById('op-plus');
 
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
@@ -17,24 +16,9 @@ let operator = '';
 
 numbers.forEach((number) => {
   number.addEventListener('click', (e) => {
-    sendNum(e.target.textContent);
+    displayCur.append(e.target.textContent);
   });
 });
-
-function sendNum(x) {
-
-  if(!displayTopLeft.hasChildNodes()) {
-
-    displayCur.append(x);
-
-  } else if (displayPre.hasChildNodes() && displayCur.hasChildNodes() && 
-  displayTopLeft.hasChildNodes()) {
-  
-    let expression = displayTopLeft.textContent + " " + x;
-    displayTopLeft.textContent = '';
-    displayTopLeft.append(expression);
-  }
-};
 
 operators.forEach((operator) => {
   operator.addEventListener('click', (e) => {
@@ -71,8 +55,8 @@ function sendOp(x) {
     let operator = displayOp.textContent;
     let numberA = Number(displayPre.textContent);
 
-    displayOp.textContent = x;
     displayCur.textContent = '';
+    displayOp.textContent = x;
     
     if (operator === '+') {
       let solution = numberA + numberB;
@@ -117,9 +101,7 @@ clear.addEventListener('click', () => {
   while (displayCur.hasChildNodes()) {
     displayCur.removeChild(displayCur.firstChild);
   }
-  while (displayTopLeft.hasChildNodes()) {
-    displayTopLeft.removeChild(displayTopLeft.firstChild);
-  }
+
 });
 
 equals.addEventListener('click', (e) => {
@@ -130,8 +112,8 @@ equals.addEventListener('click', (e) => {
   let operator = displayOp.textContent;
   let numberA = Number(displayPre.textContent);
 
-  displayOp.textContent = '';
   displayCur.textContent = '';
+  displayOp.textContent = '';
 
   if (operator === '+') {
     let solution = numberA + numberB;
@@ -160,56 +142,10 @@ function byZero() {
   displayOp.textContent = '';
   displayPre.textContent = '';
   displayCur.textContent = '';
-  displayTopLeft.textContent = '';
-  let solution = 'nope';
+  let solution = 'hahahaha';
   displayPre.textContent = '';
   displayPre.append(solution);
-  displayCur.append(solution);
-  displayOp.append(solution);
 }
-
-function setNumbers() {
-  let num = document.createElement('div');
-  num = displayCur.textContent;
-  let numberB = Number(num);
-  
-  let operator = displayOp.textContent;
-  let numberA = Number(displayPre.textContent);
-}
-
-function doMath() {
-  let num = document.createElement('div');
-  num = displayCur.textContent;
-  let numberB = Number(num);
-  
-  let operator = displayOp.textContent;
-  let numberA = Number(displayPre.textContent);
-  
-  displayOp.textContent = '';
-  displayCur.textContent = '';
-
-  if (operator === '+') {
-    let solution = numberA + numberB;
-    displayPre.textContent = '';
-    displayPre.append(solution);
-  } else if (operator === '-') {
-    let solution = numberA - numberB;
-    displayPre.textContent = '';
-    displayPre.append(solution);
-  } else if (operator === '*') {
-    let solution = numberA * numberB;
-    displayPre.textContent = '';
-    displayPre.append(solution);
-  } else if (operator === '/') {
-    if (numberB === 0) {
-      byZero();
-    } else {
-      let solution = numberA / numberB;
-      displayPre.textContent = '';
-      displayPre.append(solution);
-    }
-  }
-};
 
 decimal.addEventListener('click', (e) => {
   displayCur.append(e.target.textContent);

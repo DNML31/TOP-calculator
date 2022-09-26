@@ -39,6 +39,7 @@ body {
 }
 
 #operation {
+    font-size: 1.5rem;
     align-self: flex-start;
     padding: 4px;
 }
@@ -50,7 +51,7 @@ body {
 }
 
 #display-previous {
-    font-size: 1.6rem;
+    font-size: 2rem;
     padding: 4px;
     justify-content: center;
     align-self: center;
@@ -67,8 +68,8 @@ body {
     flex-shrink: 0;
     justify-content: flex-end;
     align-items: center;
-    font-size: 1.2rem;
-    padding: 2px;
+    font-size: 1.5rem;
+    padding: 3px;
     border: 7px solid rgb(255, 123, 0);
     border-radius: 1rem;    
     background-color: rgb(234, 234, 234);
