@@ -62,6 +62,7 @@ body {
 }
 
 #display-current {
+    font-family: monospace;
     width: 210px;
     height: 52px;
     display: flex;

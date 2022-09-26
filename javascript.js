@@ -16,7 +16,9 @@ let operator = '';
 
 numbers.forEach((number) => {
   number.addEventListener('click', (e) => {
-    displayCur.append(e.target.textContent);
+    if (displayCur.textContent.length < 14) {
+      displayCur.append(e.target.textContent);
+    }  
   });
 });
 
