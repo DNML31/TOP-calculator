@@ -15,18 +15,6 @@ let numberA = '';
 let numberB = '';
 let operator = '';
 
-function byZero() {
-  displayOp.textContent = '';
-  displayPre.textContent = '';
-  displayCur.textContent = '';
-  displayTopLeft.textContent = '';
-  let solution = 'nope';
-  displayPre.textContent = '';
-  displayPre.append(solution);
-  displayCur.append(solution);
-  displayOp.append(solution);
-}
-
 numbers.forEach((number) => {
   number.addEventListener('click', (e) => {
     sendNum(e.target.textContent);
@@ -68,11 +56,10 @@ function sendOp(x) {
 
     displayCur.textContent = '';
 
-  } else if (!displayOp.hasChildNodes() && displayPre.hasChildNodes()) {
+  } else if (displayOp.hasChildNodes() && !displayCur.hasChildNodes()) {
 
-    let expression = displayCur.textContent + " " + x;
-    displayCur.textContent = '';
-    displayCur.append(expression);
+    displayOp.textContent = '';
+    displayOp.append(x);
 
   } else if (displayPre.hasChildNodes() && displayCur.hasChildNodes()
     && displayOp.hasChildNodes()) {
@@ -80,13 +67,13 @@ function sendOp(x) {
     let num = document.createElement('div');
     num = displayCur.textContent;
     let numberB = Number(num);
-    
+      
     let operator = displayOp.textContent;
     let numberA = Number(displayPre.textContent);
-    
+
     displayOp.textContent = x;
     displayCur.textContent = '';
-  
+    
     if (operator === '+') {
       let solution = numberA + numberB;
       displayPre.textContent = '';
@@ -100,18 +87,14 @@ function sendOp(x) {
       displayPre.textContent = '';
       displayPre.append(solution);
     } else if (operator === '/') {
-      let solution = numberA / numberB;
-      displayPre.textContent = '';
-      displayPre.append(solution);
-    } else if (operator === '/' && numberB === 0) {
-      byZero();
-    } 
-
-  } else if (displayPre.hasChildNodes()) {
-
-    let expression = displayPre.textContent + " " + x;
-    displayPre.textContent = '';
-    displayPre.append(expression);
+      if (numberB === 0) {
+        byZero();
+      } else {
+        let solution = numberA / numberB;
+        displayPre.textContent = '';
+        displayPre.append(solution);
+      }
+    }
 
   } else { 
 
@@ -140,7 +123,61 @@ clear.addEventListener('click', () => {
 });
 
 equals.addEventListener('click', (e) => {
+  let num = document.createElement('div');
+  num = displayCur.textContent;
+  let numberB = Number(num);
+  
+  let operator = displayOp.textContent;
+  let numberA = Number(displayPre.textContent);
 
+  displayOp.textContent = '';
+  displayCur.textContent = '';
+
+  if (operator === '+') {
+    let solution = numberA + numberB;
+    displayPre.textContent = '';
+    displayPre.append(solution);
+  } else if (operator === '-') {
+    let solution = numberA - numberB;
+    displayPre.textContent = '';
+    displayPre.append(solution);
+  } else if (operator === '*') {
+    let solution = numberA * numberB;
+    displayPre.textContent = '';
+    displayPre.append(solution);
+  } else if (operator === '/') {
+    if (numberB === 0) {
+      byZero();
+    } else {
+      let solution = numberA / numberB;
+      displayPre.textContent = '';
+      displayPre.append(solution);
+    }
+  }
+});
+
+function byZero() {
+  displayOp.textContent = '';
+  displayPre.textContent = '';
+  displayCur.textContent = '';
+  displayTopLeft.textContent = '';
+  let solution = 'nope';
+  displayPre.textContent = '';
+  displayPre.append(solution);
+  displayCur.append(solution);
+  displayOp.append(solution);
+}
+
+function setNumbers() {
+  let num = document.createElement('div');
+  num = displayCur.textContent;
+  let numberB = Number(num);
+  
+  let operator = displayOp.textContent;
+  let numberA = Number(displayPre.textContent);
+}
+
+function doMath() {
   let num = document.createElement('div');
   num = displayCur.textContent;
   let numberB = Number(num);
@@ -172,7 +209,7 @@ equals.addEventListener('click', (e) => {
       displayPre.append(solution);
     }
   }
-});
+};
 
 decimal.addEventListener('click', (e) => {
   displayCur.append(e.target.textContent);
