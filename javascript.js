@@ -5,6 +5,7 @@ const displayCur = document.getElementById('display-current');
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const clear = document.getElementById('clear');
+const erase = document.getElementById('delete');
 const decimal = document.getElementById('decimal');
 const equals = document.getElementById('equals');
 
@@ -105,6 +106,14 @@ clear.addEventListener('click', () => {
   }
 
 });
+
+erase.addEventListener('click', () => {
+
+  while (displayCur.hasChildNodes()) {
+    displayCur.removeChild(displayCur.lastChild);
+  }
+})
+
 
 equals.addEventListener('click', (e) => {
   let num = document.createElement('div');
