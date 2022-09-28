@@ -109,10 +109,11 @@ clear.addEventListener('click', () => {
 
 erase.addEventListener('click', () => {
 
-  while (displayCur.hasChildNodes()) {
-    displayCur.removeChild(displayCur.lastChild);
-  }
-})
+  let x = displayCur.textContent;
+  y = x.slice(0, -1);
+  displayCur.textContent = y;
+
+});
 
 
 equals.addEventListener('click', (e) => {
