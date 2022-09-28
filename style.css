@@ -34,6 +34,7 @@ body {
 }
 
 #operation {
+    flex-shrink: 0;
     font-size: 1.5rem;
     align-self: flex-start;
     padding: 4px;
