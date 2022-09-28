@@ -45,14 +45,9 @@ body {
     padding: 4px;
 }
 
-#op-plus {
-    align-self: flex-start;
-    justify-content: flex-start;
-    padding: 4px;
-}
-
 #display-previous {
-    font-size: 2rem;
+    font-size: 1.9rem;
+    flex-shrink: 1;
     padding: 4px;
     justify-content: center;
     align-self: center;

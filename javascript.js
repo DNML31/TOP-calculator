@@ -63,22 +63,22 @@ function sendOp(x) {
     if (operator === '+') {
       let solution = numberA + numberB;
       displayPre.textContent = '';
-      displayPre.append(solution);
+      displayPre.append(sciNotation(solution));
     } else if (operator === '-') {
       let solution = numberA - numberB;
       displayPre.textContent = '';
-      displayPre.append(solution);
+      displayPre.append(sciNotation(solution));
     } else if (operator === '*') {
       let solution = numberA * numberB;
       displayPre.textContent = '';
-      displayPre.append(solution);
+      displayPre.append(sciNotation(solution));
     } else if (operator === '/') {
       if (numberB === 0) {
         byZero();
       } else {
         let solution = numberA / numberB;
         displayPre.textContent = '';
-        displayPre.append(solution);
+        displayPre.append(sciNotation(solution));
       }
     }
 
@@ -120,22 +120,22 @@ equals.addEventListener('click', (e) => {
   if (operator === '+') {
     let solution = numberA + numberB;
     displayPre.textContent = '';
-    displayPre.append(solution);
+    displayPre.append(sciNotation(solution));
   } else if (operator === '-') {
     let solution = numberA - numberB;
     displayPre.textContent = '';
-    displayPre.append(solution);
+    displayPre.append(sciNotation(solution));
   } else if (operator === '*') {
     let solution = numberA * numberB;
     displayPre.textContent = '';
-    displayPre.append(solution);
+    displayPre.append(sciNotation(solution));
   } else if (operator === '/') {
     if (numberB === 0) {
       byZero();
     } else {
       let solution = numberA / numberB;
       displayPre.textContent = '';
-      displayPre.append(solution);
+      displayPre.append(sciNotation(solution));
     }
   }
 });
@@ -152,3 +152,12 @@ function byZero() {
 decimal.addEventListener('click', (e) => {
   displayCur.append(e.target.textContent);
 });
+
+function sciNotation(x) {
+  if (x.toString().length > 12) {
+    let y = Number(x);
+    return y.toExponential(9); 
+  } else {
+    return x;
+  }
+};
